@@ -122,4 +122,8 @@ This project doesn't include platform fees. If you find value in it and would li
 **SOLANA ADDRESS**
 ```sh
 AyWu89SjZBW1MzkxiREmgtyMKxSkS1zVy8Uo23RyLphX
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> bfdc3898b03fdb6f44a74098a003495cf091066e
