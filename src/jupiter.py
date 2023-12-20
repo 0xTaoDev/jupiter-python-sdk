@@ -370,7 +370,7 @@ class Jupiter_DCA():
     async def close_dca(
         self,
         dca_pubkey: Pubkey,
-    ):
+    ) -> str:
         """Close DCA Account with signing and sending the transaction.
         
         Args:
@@ -1054,7 +1054,7 @@ class Jupiter():
     @staticmethod
     async def get_jupiter_stats(
         unit_of_time: str,
-    ) -> list:
+    ) -> dict:
         """Stats for the unit of time specified.
         
         Args:
@@ -1075,7 +1075,7 @@ class Jupiter():
     async def get_token_price(
         input_mint: str,
         output_mint: str=None,
-    ) -> list:
+    ) -> dict:
         """The Jupiter Price API aims to make getting precise and real-time pricing for all SPL tokens as powerful and simple as possible.
         
         Args:
