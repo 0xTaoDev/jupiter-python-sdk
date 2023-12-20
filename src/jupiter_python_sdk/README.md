@@ -41,7 +41,7 @@ import base58
 from solders.pubkey import Pubkey
 from solders.keypair import Keypair
 from solana.rpc.async_api import AsyncClient
-from jupiter import Jupiter, Jupiter_DCA
+from jupiter_python_sdk.jupiter import Jupiter, Jupiter_DCA
 
 async def main():
     private_key = Keypair.from_bytes(base58.b58decode(os.getenv("PRIVATE_KEY"))) # Private key as string
@@ -122,8 +122,4 @@ This project doesn't include platform fees. If you find value in it and would li
 **SOLANA ADDRESS**
 ```sh
 AyWu89SjZBW1MzkxiREmgtyMKxSkS1zVy8Uo23RyLphX
-<<<<<<< HEAD
 ```
-=======
-```
->>>>>>> bfdc3898b03fdb6f44a74098a003495cf091066e

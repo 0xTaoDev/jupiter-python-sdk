@@ -41,7 +41,7 @@ import base58
 from solders.pubkey import Pubkey
 from solders.keypair import Keypair
 from solana.rpc.async_api import AsyncClient
-from jupiter import Jupiter, Jupiter_DCA
+from jupiter_python_sdk.jupiter import Jupiter, Jupiter_DCA
 
 async def main():
     private_key = Keypair.from_bytes(base58.b58decode(os.getenv("PRIVATE_KEY"))) # Private key as string
