@@ -107,7 +107,7 @@ async def main():
 - get_all_tickers
 - get_all_swap_pairs
 - get_swap_pairs
-- get_toekn_stats_by_date
+- get_token_stats_by_date
 - program_id_to_label
 ```
 
