@@ -67,7 +67,7 @@ setup(
     'websockets',
     'zstandard'
     ],
-    keywords=['python', 'video', 'stream', 'video stream', 'camera stream', 'sockets'],
+    keywords=['python', 'solana', 'jupiter', 'dex', 'trading', 'sdk'],
     classifiers=[
         "Development Status :: 1 - Planning",
         "Intended Audience :: Developers",
