@@ -614,11 +614,11 @@ class Jupiter():
 
     async def swap(
         self,
-        input_mint: Pubkey,
-        output_mint: Pubkey,
+        input_mint: str,
+        output_mint: str,
         amount: int=0,
         wrap_unwrap_sol: bool=True,
-        slippage_bps: int=0,
+        slippage_bps: int=1,
         swap_mode: str="ExactIn",
         only_direct_routes: bool=False,
         as_legacy_transaction: bool=False,
@@ -670,7 +670,7 @@ class Jupiter():
         )
         transaction_parameters = {
             "quoteResponse": quoteResponse,
-            "userPublicKey": self.keypair.pubkey(),
+            "userPublicKey": self.keypair.pubkey().__str__(),
             "wrapUnwrapSOL": wrap_unwrap_sol
         }
         transaction_data = httpx.post(url=self.ENDPOINT_APIS_URL['SWAP'], json=transaction_parameters).json()['swapTransaction']
