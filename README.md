@@ -107,9 +107,13 @@ async def main():
 - get_all_tickers
 - get_all_swap_pairs
 - get_swap_pairs
-- get_toekn_stats_by_date
+- get_token_stats_by_date
 - program_id_to_label
 ```
+
+# 📝 TO-DO
+- [ ] Bridge 🌉
+- [ ] Perpetual 💸
 
 # 🤝 Contributions
 If you are interesting in contributing, fork the repository and submit a pull request in order to merge your improvements into the main repository.<br>
