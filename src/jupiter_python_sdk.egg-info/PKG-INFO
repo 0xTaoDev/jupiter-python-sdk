@@ -7,7 +7,7 @@ Author-email: taodev3@proton.me
 Keywords: python,solana,jupiter,dex,trading,sdk
 Classifier: Development Status :: 1 - Planning
 Classifier: Intended Audience :: Developers
-Classifier: Programming Language :: Python :: 3.11.4
+Classifier: Programming Language :: Python :: 3
 Classifier: Operating System :: Unix
 Classifier: Operating System :: MacOS :: MacOS X
 Classifier: Operating System :: Microsoft :: Windows
