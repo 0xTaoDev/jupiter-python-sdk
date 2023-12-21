@@ -20,7 +20,8 @@
 # 📖 Introduction
 **Jupiter Python SDK** is a Python library that allows you to use most of **[Jupiter](https://jup.ag/) features**.<br>
 It enables executing swaps, limit orders, DCA, swap pairs, tokens prices, fetching wallet infos, stats, data and more!<br>
-This library is using packages like: [solana-py](https://github.com/michaelhly/solana-py), [solders](https://github.com/kevinheavey/solders), [anchorpy](https://github.com/kevinheavey/anchorpy).
+This library is using packages like: [solana-py](https://github.com/michaelhly/solana-py), [solders](https://github.com/kevinheavey/solders), [anchorpy](https://github.com/kevinheavey/anchorpy).<br>
+There is documentation inside each function, however, you can access to the [official Jupiter API](https://docs.jup.ag/docs).
 
 # ⚠️ Disclaimer
 **Please note that I'm not responsible for any loss of funds, damages, or other libailities resulting from the use of this software or any associated services.<br>
@@ -107,9 +108,13 @@ async def main():
 - get_all_tickers
 - get_all_swap_pairs
 - get_swap_pairs
-- get_toekn_stats_by_date
+- get_token_stats_by_date
 - program_id_to_label
 ```
+
+# 📝 TO-DO
+- [ ] Bridge 🌉
+- [ ] Perpetual 💸
 
 # 🤝 Contributions
 If you are interesting in contributing, fork the repository and submit a pull request in order to merge your improvements into the main repository.<br>
