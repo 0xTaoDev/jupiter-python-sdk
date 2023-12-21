@@ -111,6 +111,10 @@ async def main():
 - program_id_to_label
 ```
 
+# 📝 TO-DO
+- [ ] Bridge 🌉
+- [ ] Perpetual 💸
+
 # 🤝 Contributions
 If you are interesting in contributing, fork the repository and submit a pull request in order to merge your improvements into the main repository.<br>
 Contact me for any inquiry, I will reach you as soon as possible.<br>
