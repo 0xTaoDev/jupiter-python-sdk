@@ -928,14 +928,7 @@ class Jupiter():
     ) -> dict:
         """
         Retrieve an indexed route map for all the possible token pairs you can swap between.
-        
-        Args:
-            Optionals:
-                ``input_mint (str)``: Input token mint Pubkey.\n
-                ``output_mint (str)``: Output token mint Pubkey.\n
-                ``cursor (int)``: Pointer to a specific result in the data set.\n
-                ``skip (int)``: Number of records to skip from the beginning.\n
-                ``take (int)``: Number of records to retrieve from the current position.
+
         Returns:
             ``dict``: indexed route map for all the possible token pairs you can swap betwee from https://quote-api.jup.ag/v6/indexed-route-map
         
