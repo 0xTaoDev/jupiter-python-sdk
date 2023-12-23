@@ -4,10 +4,10 @@ import os
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-with codecs.open(os.path.join(here, "jupiter_python_sdk/README.md"), encoding="utf-8") as fh:
+with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '0.0.1.1'
+VERSION = '0.0.1.3'
 DESCRIPTION = 'Jupiter Python SDK'
 LONG_DESCRIPTION = 'This package allows the use of Jupiter decentralized exchange features on Solana using Python.'
 
@@ -21,6 +21,7 @@ setup(
     long_description_content_type="text/markdown",
     long_description=long_description,
     packages=find_packages(),
+    license=('LICENSE.txt'),
     install_requires=[
     'wheel',
     'pyaudio',

@@ -1,3 +1,5 @@
+LICENSE.txt
+README.md
 setup.py
 jupiter_python_sdk/__init__.py
 jupiter_python_sdk/jupiter.py
