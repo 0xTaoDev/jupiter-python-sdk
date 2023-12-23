@@ -7,7 +7,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '0.0.1.3'
+VERSION = '0.0.1.4'
 DESCRIPTION = 'Jupiter Python SDK'
 LONG_DESCRIPTION = 'This package allows the use of Jupiter decentralized exchange features on Solana using Python.'
 
@@ -24,7 +24,6 @@ setup(
     license=('LICENSE.txt'),
     install_requires=[
     'wheel',
-    'pyaudio',
     'anchorpy',
     'anchorpy-core',
     'anyio',
