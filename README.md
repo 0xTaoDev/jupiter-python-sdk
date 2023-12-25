@@ -34,9 +34,15 @@ This tool is provided for educational purposes only and should not be used as fi
 ```sh
 pip install jupiter-python-sdk
 ```
+
 ### 📃 General Usage
 **Providing the private key and RPC client is not mandatory if you only intend to execute functions for retrieving data.<br>
 Otherwise, this is required, for instance, to open a DCA account or to close one.**
+
+If you encounter ```ImportError: cannot import name 'sync_native' from 'spl.token.instructions``` error when trying to import Jupiter, Jupiter_DCA from jupiter_python_sdk.jupiter, follow these steps:
+1. Go to https://github.com/michaelhly/solana-py/tree/master/src/spl/token and download ```instructions.py```
+2. In your packages folder, replace ```spl/token/instructions.py``` with the one you just downloaded.
+
 ```py
 import base58
 from solders.pubkey import Pubkey
