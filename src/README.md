@@ -21,7 +21,7 @@
 **Jupiter Python SDK** is a Python library that allows you to use most of **[Jupiter](https://jup.ag/) features**.<br>
 It enables executing swaps, limit orders, DCA, swap pairs, tokens prices, fetching wallet infos, stats, data and more!<br>
 This library is using packages like: [solana-py](https://github.com/michaelhly/solana-py), [solders](https://github.com/kevinheavey/solders), [anchorpy](https://github.com/kevinheavey/anchorpy).<br>
-There is documentation inside each function, however, you can access to the [official Jupiter API](https://docs.jup.ag/docs).
+There is documentation inside each function, however, you can access to the [official Jupiter API](https://docs.jup.ag/docs) for more information.
 
 # ⚠️ Disclaimer
 **Please note that I'm not responsible for any loss of funds, damages, or other libailities resulting from the use of this software or any associated services.<br>
@@ -34,9 +34,15 @@ This tool is provided for educational purposes only and should not be used as fi
 ```sh
 pip install jupiter-python-sdk
 ```
+
 ### 📃 General Usage
 **Providing the private key and RPC client is not mandatory if you only intend to execute functions for retrieving data.<br>
 Otherwise, this is required, for instance, to open a DCA account or to close one.**
+
+If you encounter ```ImportError: cannot import name 'sync_native' from 'spl.token.instructions``` error when trying to import Jupiter, Jupiter_DCA from jupiter_python_sdk.jupiter, follow these steps:
+1. Go to https://github.com/michaelhly/solana-py/tree/master/src/spl/token and download ```instructions.py```
+2. In your packages folder, replace ```spl/token/instructions.py``` with the one you just downloaded.
+
 ```py
 import base58
 from solders.pubkey import Pubkey
@@ -119,7 +125,7 @@ async def main():
 # 🤝 Contributions
 If you are interesting in contributing, fork the repository and submit a pull request in order to merge your improvements into the main repository.<br>
 Contact me for any inquiry, I will reach you as soon as possible.<br>
-[![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://discord.gg/_taodev_)
+[![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://discord.gg/H3QRapcC)
 [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?logo=Twitter&logoColor=white)](https://twitter.com/_TaoDev_)
 
 # 👑 Donations

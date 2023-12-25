@@ -548,8 +548,8 @@ class Jupiter():
     
     async def quote(
         self,
-        input_mint: Pubkey,
-        output_mint: Pubkey,
+        input_mint: str,
+        output_mint: str,
         amount: int,
         slippage_bps: int=None,
         swap_mode: str="ExactIn",
@@ -562,8 +562,8 @@ class Jupiter():
         
         Args:
             Required:
-                ``input_mint (Pubkey)``: Input token mint Pubkey\n
-                ``output_mint (Pubkey)``: Output token mint Pubkey\n
+                ``input_mint (str)``: Input token mint address\n
+                ``output_mint (str)``: Output token mint address\n
                 ``amount (int)``: The API takes in amount in integer and you have to factor in the decimals for each token by looking up the decimals for that token. For example, USDC has 6 decimals and 1 USDC is 1000000 in integer when passing it in into the API.\n
             Optionals:
                 ``slippage_bps (int)``: The slippage % in BPS. If the output token amount exceeds the slippage then the swap transaction will fail.\n
@@ -582,8 +582,8 @@ class Jupiter():
             >>> private_key_string = "tSg8j3pWQyx3TC2fpN9Ud1bS0NoAK0Pa3TC2fpNd1bS0NoASg83TC2fpN9Ud1bS0NoAK0P"
             >>> private_key = Keypair.from_bytes(base58.b58decode(private_key_string))
             >>> jupiter = Jupiter(async_client, private_key)
-            >>> input_mint = Pubkey.from_string("So11111111111111111111111111111111111111112")
-            >>> output_mint = Pubkey.from_string("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v")
+            >>> input_mint = "So11111111111111111111111111111111111111112"
+            >>> output_mint = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
             >>> amount = 5_000_000
             >>> quote = await jupiter.quote(input_mint, output_mint, amount)
             {
@@ -601,7 +601,7 @@ class Jupiter():
                 'timeTaken': 0.069434356}
         """
         
-        quote_url = self.ENDPOINT_APIS_URL['QUOTE'] + "inputMint=" + input_mint.__str__() + "&outputMint=" + output_mint.__str__() + "&amount=" + str(amount) + "&swapMode=" + swap_mode + "&onlyDirectRoutes=" + str(only_direct_routes).lower() + "&asLegacyTransaction=" + str(as_legacy_transaction).lower()
+        quote_url = self.ENDPOINT_APIS_URL['QUOTE'] + "inputMint=" + input_mint + "&outputMint=" + output_mint + "&amount=" + str(amount) + "&swapMode=" + swap_mode + "&onlyDirectRoutes=" + str(only_direct_routes).lower() + "&asLegacyTransaction=" + str(as_legacy_transaction).lower()
         if slippage_bps:
             quote_url += "&slippageBps=" + str(slippage_bps)
         if exclude_dexes:
@@ -629,8 +629,8 @@ class Jupiter():
         
         Args:
             Required:
-                ``input_mint (Pubkey)``: Input token mint Pubkey\n
-                ``output_mint (Pubkey)``: Output token mint Pubkey\n
+                ``input_mint (str)``: Input token mint str\n
+                ``output_mint (str)``: Output token mint str\n
                 ``amount (int)``: The API takes in amount in integer and you have to factor in the decimals for each token by looking up the decimals for that token. For example, USDC has 6 decimals and 1 USDC is 1000000 in integer when passing it in into the API.\n
             Optionals:
                 ``wrap_unwrap_sol (bool)``: Auto wrap and unwrap SOL. Default is True.\n
@@ -650,8 +650,8 @@ class Jupiter():
             >>> private_key_string = "tSg8j3pWQyx3TC2fpN9Ud1bS0NoAK0Pa3TC2fpNd1bS0NoASg83TC2fpN9Ud1bS0NoAK0P"
             >>> private_key = Keypair.from_bytes(base58.b58decode(private_key_string))
             >>> jupiter = Jupiter(async_client, private_key)
-            >>> input_mint = Pubkey.from_string("So11111111111111111111111111111111111111112")
-            >>> output_mint = Pubkey.from_string("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v")
+            >>> input_mint = "So11111111111111111111111111111111111111112"
+            >>> output_mint = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
             >>> amount = 5_000_000
             >>> transaction_data = await jupiter.swap(user_public_key, input_mint, output_mint, amount)
             AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAJDpQzg6Gwmq0Gtgp4+LWUVz0yQOAuHGNJAGTs0dcqEMVCoh2aSWdVMvcatcojrWtwXATiOw7/o5hE7NFuy3p8vgLfsLhf7Ff9NofcPgIyAbMytm5ggTyKwmR+JqgXUXARVfefILshj4ZhFSjUfRpiSI47mVNFUq9v5NOOCWSEZJZM/GHGfBesEb9blQsf7DnKodziY279S/OPkZf0/OalnPEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMGRm/lIRcy/+ytunLDm+e8jOW7xfcSayxDmzpAAAAABHnVW/IxwG7udMVuzmgVB/2xst6j9I5RArHNola8E48Gm4hX/quBhPtof2NGGMA12sQ53BrrO1WYoPAAAAAAAQbd9uHXZaGT2cvhRs7reawctIXtX1s3kTqM9YV+/wCpT0tsDkEI/SpqJHjq4KzFnbIbtO31EcFiz2AtHgwJAfuMlyWPTiSJ8bs9ECkUjg2DC1oTmdr/EIQEjnvY2+n4WbQ/+if11/ZKdMCbHylYed5LCas238ndUUsyGqezjOXoxvp6877brTo9ZfNqq8l0MbG75MLS9uDkfKYCA0UvXWHmraeknnR8/memFAZWZHeDMQG7C5ZFLxolWUniPl6SYgcGAAUCwFwVAAYACQNIDQAAAAAAAAsGAAMACAUJAQEFAgADDAIAAAAgTgAAAAAAAAkBAwERBx8JCgADAQIECA0HBwwHGREBAhUOFxMWDxIQFAoYCQcHJMEgmzNB1pyBBwEAAAATZAABIE4AAAAAAACHBQAAAAAAADIAAAkDAwAAAQkB1rO1s+JVEuIRoGsE8f2MlAkFWssCkimIonlHpLV2w4gKBwKRTE0SjIeLSwIICg==
@@ -678,8 +678,8 @@ class Jupiter():
 
     async def open_order(
         self,
-        input_mint: Pubkey,
-        output_mint: Pubkey,
+        input_mint: str,
+        output_mint: str,
         in_amount: int=0,
         out_amount: int=0,
         expired_at: int=None
@@ -688,8 +688,8 @@ class Jupiter():
         
         Args:
             Required:
-                ``input_mint (Pubkey)``: Input token mint Pubkey\n
-                ``output_mint (Pubkey)``: Output token mint Pubkey\n
+                ``input_mint (str)``: Input token mint address\n
+                ``output_mint (str)``: Output token mint address\n
                 ``in_amount (int)``: The API takes in amount in integer and you have to factor in the decimals for each token by looking up the decimals for that token. For example, USDC has 6 decimals and 1 USDC is 1000000 in integer when passing it in into the API.\n
                 ``out_amount (int)``: The API takes in amount in integer and you have to factor in the decimals for each token by looking up the decimals for that token. For example, USDC has 6 decimals and 1 USDC is 1000000 in integer when passing it in into the API.\n
             Optionals:
@@ -703,11 +703,11 @@ class Jupiter():
             >>> private_key_string = "tSg8j3pWQyx3TC2fpN9Ud1bS0NoAK0Pa3TC2fpNd1bS0NoASg83TC2fpN9Ud1bS0NoAK0P"
             >>> private_key = Keypair.from_bytes(base58.b58decode(private_key_string))
             >>> jupiter = Jupiter(async_client, private_key)
-            >>> input_mint = Pubkey.from_string("So11111111111111111111111111111111111111112")
-            >>> output_mint = Pubkey.from_string("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v")
+            >>> input_mint = "So11111111111111111111111111111111111111112"
+            >>> output_mint = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
             >>> in_amount = 5_000_000
             >>> out_amount = 100_000
-            >>> transaction_data = await jupiter.swap(user_public_key, input_mint, output_mint, amount)
+            >>> transaction_data = await jupiter.open_order(user_public_key, input_mint, output_mint, in_amount, out_amount)
             {
                 'transaction_data': 'AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgEGC5Qzg6Gwmq0Gtgp4+LWUVz0yQOAuHGNJAGTs0dcqEMVCBvqBKhFi2uRFEKYI4zPatxbdm7DylvnQUby9MexSmeAdsqhWUMQ86Ddz4+7pQFooE6wLglATS/YvzOVUNMOqnyAmC8Ioh9cSvEZniys4XY0OyEvxe39gSdHqlHWJQUPMn4prs0EwIc9JznmgzyMliG5PJTvaFYw75ssASGlB2gMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAImg/TLoYktlelMGKAi4mA0icnTD92092qSZhd3wNABMCv4fVqQvV1OYZ3a3bH43JpI5pIln+UAHnO1fyDJwCfIGm4hX/quBhPtof2NGGMA12sQ53BrrO1WYoPAAAAAAAQan1RcZLFxRIYzJTD1K8X9Y2u4Im6H9ROPb2YoAAAAABt324ddloZPZy+FGzut5rBy0he1fWzeROoz1hX7/AKmr+pT0gdwb1ZeE73qr11921UvCtCB3MMpBcLaiY8+u7QEHDAEABAMCCAIHBgUKCRmFbkqvcJ/1nxAnAAAAAAAAECcAAAAAAAAA',
                 'signature2': Signature(
