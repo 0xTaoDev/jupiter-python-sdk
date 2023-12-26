@@ -7,7 +7,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '0.0.1.5'
+VERSION = '0.0.1.6'
 DESCRIPTION = 'Jupiter Python SDK'
 LONG_DESCRIPTION = 'This package allows the use of Jupiter decentralized exchange features on Solana using Python.'
 
@@ -23,52 +23,15 @@ setup(
     packages=find_packages(),
     license=('LICENSE.txt'),
     install_requires=[
-    'wheel',
-    'anchorpy',
-    'anchorpy-core',
-    'anyio',
-    'attrs',
     'base58',
-    'based58',
-    'borsh-construct',
-    'cachetools',
-    'certifi',
-    'charset-normalizer',
-    'colorama',
-    'construct',
-    'construct-typing',
-    'h11',
-    'httpcore',
-    'httpx',
-    'idna',
-    'iniconfig',
-    'jsonalias',
-    'jsonrpcclient',
-    'more-itertools',
-    'packaging',
-    'pluggy',
-    'psutil',
-    'py',
-    'pyheck',
-    'pytest',
-    'pytest-asyncio',
-    'pytest-xprocess',
-    'rfc3986',
-    'sniffio',
-    'solana',
     'solders',
-    'sumtypes',
-    'toml',
-    'toolz',
-    'types-cachetools',
-    'typing_extensions',
-    'urllib3',
-    'websockets',
-    'zstandard'
+    'solana',
+    'httpx',
+    'anchorpy',
     ],
     keywords=['python', 'solana', 'jupiter', 'dex', 'trading', 'sdk'],
     classifiers=[
-        "Development Status :: 1 - Planning",
+        "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
         "Operating System :: Unix",

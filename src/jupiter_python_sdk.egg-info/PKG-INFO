@@ -1,12 +1,12 @@
 Metadata-Version: 2.1
 Name: jupiter-python-sdk
-Version: 0.0.1.5
+Version: 0.0.1.6
 Summary: Jupiter Python SDK
 Author: TaoDev
 Author-email: taodev3@proton.me
 License: LICENSE.txt
 Keywords: python,solana,jupiter,dex,trading,sdk
-Classifier: Development Status :: 1 - Planning
+Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Developers
 Classifier: Programming Language :: Python :: 3
 Classifier: Operating System :: Unix
