@@ -125,7 +125,7 @@ async def main():
 # 🤝 Contributions
 If you are interesting in contributing, fork the repository and submit a pull request in order to merge your improvements into the main repository.<br>
 Contact me for any inquiry, I will reach you as soon as possible.<br>
-[![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://discord.gg/H3QRapcC)
+[![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://discord.gg/QxwPGcXDp7)
 [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?logo=Twitter&logoColor=white)](https://twitter.com/_TaoDev_)
 
 # 👑 Donations
