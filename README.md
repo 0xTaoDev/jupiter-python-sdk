@@ -48,7 +48,6 @@ If you encounter ```ImportError: cannot import name 'sync_native' from 'spl.toke
 import base58
 import base64
 import json
-import asyncio
 
 from solders import message
 from solders.pubkey import Pubkey
