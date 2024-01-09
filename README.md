@@ -43,7 +43,7 @@ If you encounter ```ImportError: cannot import name 'sync_native' from 'spl.toke
 1. Go to https://github.com/michaelhly/solana-py/tree/master/src/spl/token and download ```instructions.py```
 2. In your packages folder, replace ```spl/token/instructions.py``` with the one you just downloaded.
 
-### Here is a code snippet on how to use SDK
+### Here is a code snippet on how to use the SDK
 ```py
 import base58
 import base64
