@@ -43,6 +43,7 @@ If you encounter ```ImportError: cannot import name 'sync_native' from 'spl.toke
 1. Go to https://github.com/michaelhly/solana-py/tree/master/src/spl/token and download ```instructions.py```
 2. In your packages folder, replace ```spl/token/instructions.py``` with the one you just downloaded.
 
+### Here is a code snippet on how to use SDK
 ```py
 import base58
 import base64
@@ -97,7 +98,7 @@ transaction_data = await jupiter.open_order(
 )
 # Returns dict: {'transaction_data': serialized transactions to create the limit order, 'signature2': signature of the account that will be opened}
 
-raw_transaction = VersionedTransaction.from_bytes(base64.b64decode(transaction_data))
+raw_transaction = VersionedTransaction.from_bytes(base64.b64decode(transaction_data['transaction_data']))
 signature = private_key.sign_message(message.to_bytes_versioned(raw_transaction.message))
 signed_txn = VersionedTransaction.populate(raw_transaction.message, [signature, transaction_data['signature2']])
 opts = TxOpts(skip_preflight=False, preflight_commitment=Processed)
