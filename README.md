@@ -90,8 +90,8 @@ print(f"Transaction sent: https://explorer.solana.com/tx/{transaction_id}")
 OPEN LIMIT ORDER
 """
 transaction_data = await jupiter.open_order(
-    input_mint=Pubkey.from_string("So11111111111111111111111111111111111111112"),
-    output_mint=Pubkey.from_string("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"),
+    input_mint=So11111111111111111111111111111111111111112",
+    output_mint=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
     in_amount=5_000_000,
     out_amount=100_000,
 )
