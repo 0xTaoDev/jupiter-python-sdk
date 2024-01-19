@@ -3,3 +3,4 @@ solders
 solana
 httpx
 anchorpy
+jupiter-python-sdk
