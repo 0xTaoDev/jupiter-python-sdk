@@ -81,7 +81,7 @@ raw_transaction = VersionedTransaction.from_bytes(base64.b64decode(transaction_d
 signature = private_key.sign_message(message.to_bytes_versioned(raw_transaction.message))
 signed_txn = VersionedTransaction.populate(raw_transaction.message, [signature])
 opts = TxOpts(skip_preflight=False, preflight_commitment=Processed)
-result = await client.send_raw_transaction(txn=bytes(signed_txn), opts=opts)
+result = await async_client.send_raw_transaction(txn=bytes(signed_txn), opts=opts)
 transaction_id = json.loads(result.to_json())['result']
 print(f"Transaction sent: https://explorer.solana.com/tx/{transaction_id}")
 
@@ -101,7 +101,7 @@ raw_transaction = VersionedTransaction.from_bytes(base64.b64decode(transaction_d
 signature = private_key.sign_message(message.to_bytes_versioned(raw_transaction.message))
 signed_txn = VersionedTransaction.populate(raw_transaction.message, [signature, transaction_data['signature2']])
 opts = TxOpts(skip_preflight=False, preflight_commitment=Processed)
-result = await client.send_raw_transaction(txn=bytes(signed_txn), opts=opts)
+result = await async_client.send_raw_transaction(txn=bytes(signed_txn), opts=opts)
 transaction_id = json.loads(result.to_json())['result']
 print(f"Transaction sent: https://explorer.solana.com/tx/{transaction_id}")
 
