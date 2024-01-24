@@ -57,8 +57,8 @@ async def main():
     
     # EXECUTE A SWAP
     swap = await jupiter.swap(
-        input_mint=Pubkey.from_string("So11111111111111111111111111111111111111112"),
-        output_mint=Pubkey.from_string("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"),
+        input_mint="So11111111111111111111111111111111111111112",
+        output_mint="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
         amount=5_000_000,
         slippage_bps=1,
     )

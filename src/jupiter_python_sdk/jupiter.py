@@ -671,7 +671,7 @@ class Jupiter():
         transaction_parameters = {
             "quoteResponse": quoteResponse,
             "userPublicKey": self.keypair.pubkey().__str__(),
-            "wrapUnwrapSOL": wrap_unwrap_sol
+            "wrapUnwrapSol": wrap_unwrap_sol
         }
         transaction_data = httpx.post(url=self.ENDPOINT_APIS_URL['SWAP'], json=transaction_parameters).json()['swapTransaction']
         return transaction_data
