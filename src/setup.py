@@ -23,6 +23,7 @@ setup(
     packages=find_packages(),
     license=('LICENSE.txt'),
     install_requires=[
+    'base58',
     'solders',
     'solana',
     'httpx',
