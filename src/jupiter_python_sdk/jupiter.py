@@ -528,8 +528,8 @@ class Jupiter_DCA():
 class Jupiter():
     
     ENDPOINT_APIS_URL = {
-        "QUOTE": "https://quote-api.jup.ag/v6/quote?",
-        "SWAP": "https://quote-api.jup.ag/v6/swap",
+        "QUOTE": os.getenv("QUOTE_API_URL") || "https://quote-api.jup.ag/v6/quote?",
+        "SWAP": os.getenv("SWAP_API_URL") || "https://quote-api.jup.ag/v6/swap",
         "OPEN_ORDER": "https://jup.ag/api/limit/v1/createOrder",
         "CANCEL_ORDERS": "https://jup.ag/api/limit/v1/cancelOrders",
         "QUERY_OPEN_ORDERS": "https://jup.ag/api/limit/v1/openOrders?wallet=",
