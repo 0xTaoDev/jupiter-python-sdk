@@ -45,7 +45,7 @@ If you encounter ```ImportError: cannot import name 'sync_native' from 'spl.toke
 
 ### Using custom URLs
 
-You can set custom URLs via environment variables for any self-hosted Jupiter APIs. Like the [V6 Swap API](https://station.jup.ag/docs/apis/self-hosted) or [QuickNode's Metis API](https://marketplace.quicknode.com/add-on/metis-jupiter-v6-swap-api. Here are the ENV vars:
+You can set custom URLs via environment variables for any self-hosted Jupiter APIs. Like the [V6 Swap API](https://station.jup.ag/docs/apis/self-hosted) or [QuickNode's Metis API](https://marketplace.quicknode.com/add-on/metis-jupiter-v6-swap-api). Here are the ENV vars:
 
 ```
 QUOTE_API_URL=https://jupiter-swaps.quiknode.pro/D3ADB33F/quote?
