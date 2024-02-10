@@ -540,11 +540,26 @@ class Jupiter():
     def __init__(
         self,
         async_client: AsyncClient,
-        keypair: Keypair
+        keypair: Keypair,
+        quote_api_url: str="https://quote-api.jup.ag/v6/quote?",
+        swap_api_url: str="https://quote-api.jup.ag/v6/swap",
+        open_order_api_url: str="https://jup.ag/api/limit/v1/createOrder",
+        cancel_orders_api_url: str="https://jup.ag/api/limit/v1/cancelOrders",
+        query_open_orders_api_url: str="https://jup.ag/api/limit/v1/openOrders?wallet=",
+        query_order_history_api_url: str="https://jup.ag/api/limit/v1/orderHistory",
+        query_trade_history_api_url: str="https://jup.ag/api/limit/v1/tradeHistory",
     ):
         self.dca = Jupiter_DCA(async_client, keypair)
         self.rpc = async_client
         self.keypair = keypair
+        
+        self.ENDPOINT_APIS_URL["QUOTE"] = quote_api_url
+        self.ENDPOINT_APIS_URL["SWAP"] = swap_api_url
+        self.ENDPOINT_APIS_URL["OPEN_ORDER"] = open_order_api_url
+        self.ENDPOINT_APIS_URL["CANCEL_ORDERS"] = cancel_orders_api_url
+        self.ENDPOINT_APIS_URL["QUERY_OPEN_ORDERS"] = query_open_orders_api_url
+        self.ENDPOINT_APIS_URL["QUERY_ORDER_HISTORY"] = query_order_history_api_url
+        self.ENDPOINT_APIS_URL["QUERY_TRADE_HISTORY"] = query_trade_history_api_url
     
     async def quote(
         self,
