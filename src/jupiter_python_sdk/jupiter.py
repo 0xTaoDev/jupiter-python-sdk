@@ -623,9 +623,13 @@ class Jupiter():
             quote_url += "&excludeDexes=" + ','.join(exclude_dexes).lower()
         if max_accounts:
             quote_url += "&maxAccounts=" + str(max_accounts)
-                
+        
         quote_response = httpx.get(url=quote_url).json()
-        return quote_response
+        try:
+            quote_response['routePlan']
+            return quote_response
+        except:
+            raise Exception(quote_response['error'])
 
     async def swap(
         self,
@@ -688,8 +692,8 @@ class Jupiter():
             "userPublicKey": self.keypair.pubkey().__str__(),
             "wrapAndUnwrapSol": wrap_unwrap_sol
         }
-        transaction_data = httpx.post(url=self.ENDPOINT_APIS_URL['SWAP'], json=transaction_parameters).json()['swapTransaction']
-        return transaction_data
+        transaction_data = httpx.post(url=self.ENDPOINT_APIS_URL['SWAP'], json=transaction_parameters).json()
+        return transaction_data['swapTransaction']
 
     async def open_order(
         self,
