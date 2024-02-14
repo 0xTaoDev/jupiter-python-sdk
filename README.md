@@ -39,6 +39,8 @@ pip install jupiter-python-sdk
 **Providing the private key and RPC client is not mandatory if you only intend to execute functions for retrieving data.<br>
 Otherwise, this is required, for instance, to open a DCA account or to close one.**
 
+**You can set custom URLs for any self-hosted Jupiter APIs. Like the [V6 Swap API](https://station.jup.ag/docs/apis/self-hosted) or [QuickNode's Metis API](https://marketplace.quicknode.com/add-on/metis-jupiter-v6-swap-api).**
+
 If you encounter ```ImportError: cannot import name 'sync_native' from 'spl.token.instructions``` error when trying to import Jupiter, Jupiter_DCA from jupiter_python_sdk.jupiter, follow these steps:
 1. Go to https://github.com/michaelhly/solana-py/tree/master/src/spl/token and download ```instructions.py```
 2. In your packages folder, replace ```spl/token/instructions.py``` with the one you just downloaded.
@@ -63,7 +65,17 @@ from jupiter_python_sdk.jupiter import Jupiter, Jupiter_DCA
 
 private_key = Keypair.from_bytes(base58.b58decode(os.getenv("PRIVATE-KEY"))) # Private key as string
 async_client = AsyncClient("SOLANA-RPC-ENDPOINT-URL")
-jupiter = Jupiter(async_client, private_key)
+jupiter = Jupiter(
+    async_client=async_client,
+    private_key=private_key,
+    quote_api_url="https://quote-api.jup.ag/v6/quote?",
+    swap_api_url="https://quote-api.jup.ag/v6/swap",
+    open_order_api_url="https://jup.ag/api/limit/v1/createOrder",
+    cancel_orders_api_url="https://jup.ag/api/limit/v1/cancelOrders",
+    query_open_orders_api_url="https://jup.ag/api/limit/v1/openOrders?wallet=",
+    query_order_history_api_url="https://jup.ag/api/limit/v1/orderHistory",
+    query_trade_history_api_url="https://jup.ag/api/limit/v1/tradeHistory"
+)
 
 
 """
