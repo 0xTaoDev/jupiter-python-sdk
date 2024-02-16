@@ -172,6 +172,7 @@ close_dca_account = await jupiter.dca.close_dca(
 # 📝 TO-DO
 - [ ] Bridge 🌉
 - [ ] Perpetual 💸
+- [ ] Price API
 
 # 🤝 Contributions
 If you are interesting in contributing, fork the repository and submit a pull request in order to merge your improvements into the main repository.<br>
