@@ -636,6 +636,7 @@ class Jupiter():
         input_mint: str,
         output_mint: str,
         amount: int=0,
+        quoteResponse: str=None,
         wrap_unwrap_sol: bool=True,
         slippage_bps: int=1,
         swap_mode: str="ExactIn",
@@ -675,18 +676,18 @@ class Jupiter():
             >>> transaction_data = await jupiter.swap(user_public_key, input_mint, output_mint, amount)
             AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAJDpQzg6Gwmq0Gtgp4+LWUVz0yQOAuHGNJAGTs0dcqEMVCoh2aSWdVMvcatcojrWtwXATiOw7/o5hE7NFuy3p8vgLfsLhf7Ff9NofcPgIyAbMytm5ggTyKwmR+JqgXUXARVfefILshj4ZhFSjUfRpiSI47mVNFUq9v5NOOCWSEZJZM/GHGfBesEb9blQsf7DnKodziY279S/OPkZf0/OalnPEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMGRm/lIRcy/+ytunLDm+e8jOW7xfcSayxDmzpAAAAABHnVW/IxwG7udMVuzmgVB/2xst6j9I5RArHNola8E48Gm4hX/quBhPtof2NGGMA12sQ53BrrO1WYoPAAAAAAAQbd9uHXZaGT2cvhRs7reawctIXtX1s3kTqM9YV+/wCpT0tsDkEI/SpqJHjq4KzFnbIbtO31EcFiz2AtHgwJAfuMlyWPTiSJ8bs9ECkUjg2DC1oTmdr/EIQEjnvY2+n4WbQ/+if11/ZKdMCbHylYed5LCas238ndUUsyGqezjOXoxvp6877brTo9ZfNqq8l0MbG75MLS9uDkfKYCA0UvXWHmraeknnR8/memFAZWZHeDMQG7C5ZFLxolWUniPl6SYgcGAAUCwFwVAAYACQNIDQAAAAAAAAsGAAMACAUJAQEFAgADDAIAAAAgTgAAAAAAAAkBAwERBx8JCgADAQIECA0HBwwHGREBAhUOFxMWDxIQFAoYCQcHJMEgmzNB1pyBBwEAAAATZAABIE4AAAAAAACHBQAAAAAAADIAAAkDAwAAAQkB1rO1s+JVEuIRoGsE8f2MlAkFWssCkimIonlHpLV2w4gKBwKRTE0SjIeLSwIICg==
         """
-        
-        quoteResponse = await self.quote(
-        input_mint=input_mint,
-        output_mint=output_mint,
-        amount=amount,
-        slippage_bps=slippage_bps,
-        swap_mode=swap_mode,
-        only_direct_routes=only_direct_routes,
-        as_legacy_transaction=as_legacy_transaction,
-        exclude_dexes=exclude_dexes,
-        max_accounts=max_accounts
-        )
+        if quoteResponse is None:
+            quoteResponse = await self.quote(
+            input_mint=input_mint,
+            output_mint=output_mint,
+            amount=amount,
+            slippage_bps=slippage_bps,
+            swap_mode=swap_mode,
+            only_direct_routes=only_direct_routes,
+            as_legacy_transaction=as_legacy_transaction,
+            exclude_dexes=exclude_dexes,
+            max_accounts=max_accounts
+            )
         transaction_parameters = {
             "quoteResponse": quoteResponse,
             "userPublicKey": self.keypair.pubkey().__str__(),
