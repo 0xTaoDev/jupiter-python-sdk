@@ -640,6 +640,7 @@ class Jupiter():
         wrap_unwrap_sol: bool=True,
         slippage_bps: int=1,
         swap_mode: str="ExactIn",
+        priority_fee: int=None,
         only_direct_routes: bool=False,
         as_legacy_transaction: bool=False,
         exclude_dexes: list=None,
@@ -693,6 +694,8 @@ class Jupiter():
             "userPublicKey": self.keypair.pubkey().__str__(),
             "wrapAndUnwrapSol": wrap_unwrap_sol
         }
+        if priority_fee:
+            transaction_parameters.update({"prioritizationFeeLamports": priority_fee})
         transaction_data = httpx.post(url=self.ENDPOINT_APIS_URL['SWAP'], json=transaction_parameters).json()
         return transaction_data['swapTransaction']
 
