@@ -695,7 +695,7 @@ class Jupiter():
             "wrapAndUnwrapSol": wrap_unwrap_sol
         }
         if prioritization_fee_lamports:
-            transaction_parameters['computeUnitPriceMicroLamports'] = prioritization_fee_lamports
+            transaction_parameters['prioritizationFeeLamports'] = prioritization_fee_lamports
         transaction_data = httpx.post(url=self.ENDPOINT_APIS_URL['SWAP'], json=transaction_parameters).json()
         return transaction_data['swapTransaction']
 
