@@ -639,6 +639,7 @@ class Jupiter():
         wrap_unwrap_sol: bool=True,
         slippage_bps: int=1,
         swap_mode: str="ExactIn",
+        prioritization_fee_lamports: int=None,
         only_direct_routes: bool=False,
         as_legacy_transaction: bool=False,
         exclude_dexes: list=None,
@@ -652,6 +653,7 @@ class Jupiter():
                 ``output_mint (str)``: Output token mint str\n
                 ``amount (int)``: The API takes in amount in integer and you have to factor in the decimals for each token by looking up the decimals for that token. For example, USDC has 6 decimals and 1 USDC is 1000000 in integer when passing it in into the API.\n
             Optionals:
+                ``prioritizationFeeLamports (int)``: If transactions are expiring without confirmation on-chain, this might mean that you have to pay additional fees to prioritize your transaction. To do so, you can set the prioritizationFeeLamports parameter.\n
                 ``wrap_unwrap_sol (bool)``: Auto wrap and unwrap SOL. Default is True.\n
                 ``slippage_bps (int)``: The slippage % in BPS. If the output token amount exceeds the slippage then the swap transaction will fail.\n
                 ``swap_mode (str)``: (ExactIn or ExactOut) Defaults to ExactIn. ExactOut is for supporting use cases where you need an exact token amount, like payments. In this case the slippage is on the input token.\n
@@ -692,6 +694,8 @@ class Jupiter():
             "userPublicKey": self.keypair.pubkey().__str__(),
             "wrapAndUnwrapSol": wrap_unwrap_sol
         }
+        if prioritization_fee_lamports:
+            transaction_parameters['computeUnitPriceMicroLamports'] = prioritization_fee_lamports
         transaction_data = httpx.post(url=self.ENDPOINT_APIS_URL['SWAP'], json=transaction_parameters).json()
         return transaction_data['swapTransaction']
 
