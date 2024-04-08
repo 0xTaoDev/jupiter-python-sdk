@@ -63,8 +63,8 @@ from solana.rpc.commitment import Processed
 from jupiter_python_sdk.jupiter import Jupiter, Jupiter_DCA
 
 
-private_key = Keypair.from_bytes(base58.b58decode(os.getenv("PRIVATE-KEY"))) # Private key as string
-async_client = AsyncClient("SOLANA-RPC-ENDPOINT-URL")
+private_key = Keypair.from_bytes(base58.b58decode(os.getenv("PRIVATE-KEY"))) # Replace PRIVATE-KEY with your private key as string
+async_client = AsyncClient("SOLANA-RPC-ENDPOINT-URL") # Replace SOLANA-RPC-ENDPOINT-URL with your Solana RPC Endpoint URL
 jupiter = Jupiter(
     async_client=async_client,
     keypair=private_key,

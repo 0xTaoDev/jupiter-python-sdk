@@ -571,7 +571,8 @@ class Jupiter():
         only_direct_routes: bool=False,
         as_legacy_transaction: bool=False,
         exclude_dexes: list=None,
-        max_accounts: int=None
+        max_accounts: int=None,
+        platform_fee_bps: int=None
     ) -> dict:
         """Get the best swap route for a token trade pair sorted by largest output token amount from https://quote-api.jup.ag/v6/quote
         
@@ -586,7 +587,8 @@ class Jupiter():
                 ``only_direct_routes (bool)``: Default is False. Direct Routes limits Jupiter routing to single hop routes only.\n
                 ``as_legacy_transaction (bool)``: Default is False. Instead of using versioned transaction, this will use the legacy transaction.\n
                 ``exclude_dexes (list)``: Default is that all DEXes are included. You can pass in the DEXes that you want to exclude in a list. For example, ['Aldrin','Saber'].\n
-                ``max_accounts (int)``: Find a route given a maximum number of accounts involved, this might dangerously limit routing ending up giving a bad price. The max is an estimation and not the exact count.
+                ``max_accounts (int)``: Find a route given a maximum number of accounts involved, this might dangerously limit routing ending up giving a bad price. The max is an estimation and not the exact count.\n
+                ``platform_fee_bps (int)``: If you want to charge the user a fee, you can specify the fee in BPS. Fee % is taken out of the output token.
         
         Returns:
             ``dict``: returns best swap route
@@ -620,9 +622,11 @@ class Jupiter():
         if slippage_bps:
             quote_url += "&slippageBps=" + str(slippage_bps)
         if exclude_dexes:
-            quote_url += "&excludeDexes=" + ','.join(exclude_dexes).lower()
+            quote_url += "&excludeDexes=" + ','.join(exclude_dexes)
         if max_accounts:
             quote_url += "&maxAccounts=" + str(max_accounts)
+        if platform_fee_bps:
+            quote_url += "&plateformFeeBps=" + platform_fee_bps
         
         quote_response = httpx.get(url=quote_url).json()
         try:
@@ -636,6 +640,7 @@ class Jupiter():
         input_mint: str,
         output_mint: str,
         amount: int=0,
+        quoteResponse: str=None,
         wrap_unwrap_sol: bool=True,
         slippage_bps: int=1,
         swap_mode: str="ExactIn",
@@ -643,7 +648,8 @@ class Jupiter():
         only_direct_routes: bool=False,
         as_legacy_transaction: bool=False,
         exclude_dexes: list=None,
-        max_accounts: int=None
+        max_accounts: int=None,
+        platform_fee_bps: int=None
     ) -> str:
         """Perform a swap.
         
@@ -660,7 +666,8 @@ class Jupiter():
                 ``only_direct_routes (bool)``: Default is False. Direct Routes limits Jupiter routing to single hop routes only.\n
                 ``as_legacy_transaction (bool)``: Default is False. Instead of using versioned transaction, this will use the legacy transaction.\n
                 ``exclude_dexes (list)``: Default is that all DEXes are included. You can pass in the DEXes that you want to exclude in a list. For example, ['Aldrin','Saber'].\n
-                ``max_accounts (int)``: Find a route given a maximum number of accounts involved, this might dangerously limit routing ending up giving a bad price. The max is an estimation and not the exact count.
+                ``max_accounts (int)``: Find a route given a maximum number of accounts involved, this might dangerously limit routing ending up giving a bad price. The max is an estimation and not the exact count.\n
+                ``platform_fee_bps (int)``: If you want to charge the user a fee, you can specify the fee in BPS. Fee % is taken out of the output token.
         
         Returns:
             ``str``: returns serialized transactions to perform the swap from https://quote-api.jup.ag/v6/swap
@@ -678,24 +685,26 @@ class Jupiter():
             AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAJDpQzg6Gwmq0Gtgp4+LWUVz0yQOAuHGNJAGTs0dcqEMVCoh2aSWdVMvcatcojrWtwXATiOw7/o5hE7NFuy3p8vgLfsLhf7Ff9NofcPgIyAbMytm5ggTyKwmR+JqgXUXARVfefILshj4ZhFSjUfRpiSI47mVNFUq9v5NOOCWSEZJZM/GHGfBesEb9blQsf7DnKodziY279S/OPkZf0/OalnPEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMGRm/lIRcy/+ytunLDm+e8jOW7xfcSayxDmzpAAAAABHnVW/IxwG7udMVuzmgVB/2xst6j9I5RArHNola8E48Gm4hX/quBhPtof2NGGMA12sQ53BrrO1WYoPAAAAAAAQbd9uHXZaGT2cvhRs7reawctIXtX1s3kTqM9YV+/wCpT0tsDkEI/SpqJHjq4KzFnbIbtO31EcFiz2AtHgwJAfuMlyWPTiSJ8bs9ECkUjg2DC1oTmdr/EIQEjnvY2+n4WbQ/+if11/ZKdMCbHylYed5LCas238ndUUsyGqezjOXoxvp6877brTo9ZfNqq8l0MbG75MLS9uDkfKYCA0UvXWHmraeknnR8/memFAZWZHeDMQG7C5ZFLxolWUniPl6SYgcGAAUCwFwVAAYACQNIDQAAAAAAAAsGAAMACAUJAQEFAgADDAIAAAAgTgAAAAAAAAkBAwERBx8JCgADAQIECA0HBwwHGREBAhUOFxMWDxIQFAoYCQcHJMEgmzNB1pyBBwEAAAATZAABIE4AAAAAAACHBQAAAAAAADIAAAkDAwAAAQkB1rO1s+JVEuIRoGsE8f2MlAkFWssCkimIonlHpLV2w4gKBwKRTE0SjIeLSwIICg==
         """
         
-        quoteResponse = await self.quote(
-        input_mint=input_mint,
-        output_mint=output_mint,
-        amount=amount,
-        slippage_bps=slippage_bps,
-        swap_mode=swap_mode,
-        only_direct_routes=only_direct_routes,
-        as_legacy_transaction=as_legacy_transaction,
-        exclude_dexes=exclude_dexes,
-        max_accounts=max_accounts
-        )
+        if quoteResponse is None:
+            quoteResponse = await self.quote(
+            input_mint=input_mint,
+            output_mint=output_mint,
+            amount=amount,
+            slippage_bps=slippage_bps,
+            swap_mode=swap_mode,
+            only_direct_routes=only_direct_routes,
+            as_legacy_transaction=as_legacy_transaction,
+            exclude_dexes=exclude_dexes,
+            max_accounts=max_accounts,
+            platform_fee_bps=platform_fee_bps
+            )
         transaction_parameters = {
             "quoteResponse": quoteResponse,
             "userPublicKey": self.keypair.pubkey().__str__(),
             "wrapAndUnwrapSol": wrap_unwrap_sol
         }
         if prioritization_fee_lamports:
-            transaction_parameters['prioritizationFeeLamports'] = prioritization_fee_lamports
+            transaction_parameters.update({"prioritizationFeeLamports": prioritization_fee_lamports})
         transaction_data = httpx.post(url=self.ENDPOINT_APIS_URL['SWAP'], json=transaction_parameters).json()
         return transaction_data['swapTransaction']
 

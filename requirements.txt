@@ -1,6 +1,6 @@
 base58
-solders
-solana
+solders==0.18.1
+solana==0.30.2
 httpx
-anchorpy
+anchorpy==0.18.0
 jupiter-python-sdk
