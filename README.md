@@ -67,7 +67,7 @@ private_key = Keypair.from_bytes(base58.b58decode(os.getenv("PRIVATE-KEY"))) # P
 async_client = AsyncClient("SOLANA-RPC-ENDPOINT-URL")
 jupiter = Jupiter(
     async_client=async_client,
-    private_key=private_key,
+    keypair=private_key,
     quote_api_url="https://quote-api.jup.ag/v6/quote?",
     swap_api_url="https://quote-api.jup.ag/v6/swap",
     open_order_api_url="https://jup.ag/api/limit/v1/createOrder",
@@ -172,6 +172,8 @@ close_dca_account = await jupiter.dca.close_dca(
 # 📝 TO-DO
 - [ ] Bridge 🌉
 - [ ] Perpetual 💸
+- [ ] Price API
+- [ ] Wallet Transactions History
 
 # 🤝 Contributions
 If you are interesting in contributing, fork the repository and submit a pull request in order to merge your improvements into the main repository.<br>
